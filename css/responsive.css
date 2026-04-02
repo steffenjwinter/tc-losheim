@@ -1,0 +1,56 @@
+/* ============================================
+   TC Rot-Weiß Losheim — Responsive
+   ============================================ */
+
+/* === Tablet (max 1024px) === */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+}
+
+/* === Mobile (max 768px) === */
+@media (max-width: 768px) {
+  :root {
+    --header-h: 70px;
+    --header-h-shrink: 60px;
+  }
+
+  .section { padding: 64px 0; }
+  .section-header { margin-bottom: 40px; }
+
+  /* Navigation */
+  .main-nav { display: none; }
+  .nav-actions { display: none; }
+  .mobile-toggle { display: flex; }
+
+  /* Grid */
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+
+  /* Hero */
+  .hero { min-height: 75vh; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .hero-ctas .btn { width: 100%; max-width: 300px; }
+
+  /* Stats */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 0 16px; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+  /* Events */
+  .event-item { flex-wrap: wrap; }
+  .event-badge { margin-left: 0; margin-top: 8px; }
+
+  /* Tables */
+  .data-table { font-size: 0.8rem; }
+  .data-table th, .data-table td { padding: 10px 12px; }
+}
+
+/* === Small Mobile (max 480px) === */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero-content { padding: 0 16px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}

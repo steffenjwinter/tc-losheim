@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mannschaften des TC Rot-Weiß Losheim — 16+ Teams in allen Altersklassen. Herren, Damen, Jugend. Ergebnisse und Spielpläne der Medenrunde.">
+  <title>Mannschaften — TC Rot-Weiß Losheim</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <img src="../img/logo.png" alt="TC Rot-Weiß Losheim" loading="eager">
+      <div class="logo-text">TC <span>Rot-Weiß</span> Losheim</div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <div class="nav-dropdown">
+        <span class="nav-label">Verein <svg width="10" height="6" viewBox="0 0 10 6" style="margin-left:4px;vertical-align:middle;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>
+        <div class="nav-dropdown-menu">
+          <a href="verein.html">Über uns</a>
+          <a href="verein.html#vorstand">Vorstand</a>
+          <a href="verein.html#geschichte">Geschichte</a>
+          <a href="anlage.html">Unsere Anlage</a>
+          <a href="sponsoren.html">Sponsoren</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <span class="nav-label">Tennis <svg width="10" height="6" viewBox="0 0 10 6" style="margin-left:4px;vertical-align:middle;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>
+        <div class="nav-dropdown-menu">
+          <a href="mannschaften.html">Mannschaften</a>
+          <a href="tennisschule.html">Tennisschule</a>
+          <a href="trainingszeiten.html">Trainingszeiten</a>
+          <a href="aktuelles.html">Turniere & Events</a>
+        </div>
+      </div>
+      <a href="aktuelles.html">Aktuelles</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="mitglied.html" class="btn btn-outline-dark btn-sm">Mitglied werden</a>
+      <a href="platzbuchung.html" class="btn btn-primary btn-sm">Platz buchen</a>
+    </div>
+
+    <button class="mobile-toggle" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav">
+  <a href="../index.html">Home</a>
+  <a href="verein.html">Verein</a>
+  <a href="mannschaften.html">Mannschaften</a>
+  <a href="tennisschule.html">Tennisschule</a>
+  <a href="anlage.html">Anlage</a>
+  <a href="aktuelles.html">Aktuelles</a>
+  <a href="trainingszeiten.html">Trainingszeiten</a>
+  <a href="kontakt.html">Kontakt</a>
+  <div class="mobile-nav-cta">
+    <a href="mitglied.html" class="btn btn-outline-dark">Mitglied werden</a>
+    <a href="platzbuchung.html" class="btn btn-primary">Platz buchen</a>
+  </div>
+</div>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container">
+    <p class="overline reveal" style="color: rgba(255,255,255,0.5);">Mannschaftstennis</p>
+    <h1 class="reveal">Mannschaften</h1>
+    <p class="reveal">16+ Teams in allen Altersklassen</p>
+  </div>
+</section>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="container">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="mannschaften.html">Tennis</a>
+    <span class="sep">/</span>
+    <span>Mannschaften</span>
+  </div>
+</div>
+
+<!-- ===== TEAMS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="overline">Saison 2026</p>
+      <h2>Unsere Teams im Überblick</h2>
+      <p>Von der Kreisklasse bis zur Verbandsliga, vom Kleinfeld bis zu den Herren 55 — der TC Rot-Weiß stellt in jeder Altersklasse mindestens ein Team.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap;" class="reveal">
+      <button class="btn btn-primary btn-sm team-tab active" data-filter="all">Alle Teams</button>
+      <button class="btn btn-outline-dark btn-sm team-tab" data-filter="herren">Herren</button>
+      <button class="btn btn-outline-dark btn-sm team-tab" data-filter="damen">Damen</button>
+      <button class="btn btn-outline-dark btn-sm team-tab" data-filter="jugend">Jugend</button>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="grid grid-2 stagger" id="team-grid">
+
+      <!-- HERREN -->
+      <a href="mannschaft-detail.html?team=herren1" class="card reveal team-card" data-category="herren" style="--i:0; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--rot); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 1.1rem; flex-shrink: 0;">H1</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Herren 1</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Region 2 &middot; Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=herren2" class="card reveal team-card" data-category="herren" style="--i:1; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--rot); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 1.1rem; flex-shrink: 0;">H2</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Herren 2</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Region 2 &middot; Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=herren30" class="card reveal team-card" data-category="herren" style="--i:2; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--rot); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.95rem; flex-shrink: 0;">H30</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Herren 30</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=herren40" class="card reveal team-card" data-category="herren" style="--i:3; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--rot); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.95rem; flex-shrink: 0;">H40</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Herren 40</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=herren50" class="card reveal team-card" data-category="herren" style="--i:4; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--rot); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.95rem; flex-shrink: 0;">H50</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Herren 50</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Verbandsliga &middot; Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=herren55" class="card reveal team-card" data-category="herren" style="--i:5; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--rot); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.95rem; flex-shrink: 0;">H55</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Herren 55</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">SG Losheim/Brotdorf &middot; Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <!-- DAMEN -->
+      <a href="mannschaft-detail.html?team=damen30" class="card reveal team-card" data-category="damen" style="--i:0; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--anthrazit); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.95rem; flex-shrink: 0;">D30</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Damen 30</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=damen40" class="card reveal team-card" data-category="damen" style="--i:1; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--anthrazit); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.95rem; flex-shrink: 0;">D40</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Damen 40</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=damen50" class="card reveal team-card" data-category="damen" style="--i:2; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: var(--anthrazit); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.95rem; flex-shrink: 0;">D50</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Damen 50</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <!-- JUGEND -->
+      <a href="mannschaft-detail.html?team=junioren-u18" class="card reveal team-card" data-category="jugend" style="--i:0; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: #2e7d32; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">U18</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Junioren U-18</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=juniorinnen-u18-1" class="card reveal team-card" data-category="jugend" style="--i:1; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: #2e7d32; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">U18</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Juniorinnen U-18 I</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=juniorinnen-u18-2" class="card reveal team-card" data-category="jugend" style="--i:2; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: #2e7d32; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">U18</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Juniorinnen U-18 II</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=junioren-u15" class="card reveal team-card" data-category="jugend" style="--i:3; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: #2e7d32; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">U15</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Junioren U-15</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=juniorinnen-u15-1" class="card reveal team-card" data-category="jugend" style="--i:4; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: #2e7d32; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">U15</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Juniorinnen U-15 I</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=juniorinnen-u15-2" class="card reveal team-card" data-category="jugend" style="--i:5; text-decoration: none;">
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: #2e7d32; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">U15</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Juniorinnen U-15 II</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+      <a href="mannschaft-detail.html?team=kleinfeld" class="card reveal team-card" data-category="jugend" style="--i:6; text-decoration: none; position: relative;">
+        <span class="tag-coming" style="background: #2e7d32;">Meister!</span>
+        <div class="card-body" style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 56px; height: 56px; background: #2e7d32; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--weiss); font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">KF</div>
+          <div style="flex: 1;">
+            <h3 style="margin-bottom: 2px; font-size: 1.05rem;">Kleinfeld &#127942;</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0;">Meister! &middot; Sommerrunde 2026</p>
+          </div>
+          <span style="color: var(--rot); font-size: 1.2rem;">&rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== nuLiga ===== -->
+<section class="section section-sand" style="padding: 56px 0;">
+  <div class="container" style="text-align: center;">
+    <p class="overline reveal" style="margin-bottom: 8px;">Offizielle Ergebnisse</p>
+    <h2 class="reveal" style="margin-bottom: 12px;">Alle Ergebnisse auf nuLiga</h2>
+    <p class="reveal" style="max-width: 520px; margin: 0 auto 28px;">Tabellen, Einzelergebnisse und die komplette Spielübersicht findet ihr auf dem offiziellen Portal des Saarländischen Tennisbundes.</p>
+    <a href="https://stb.liga.nu/" target="_blank" class="btn btn-primary reveal">nuLiga öffnen &rarr;</a>
+  </div>
+</section>
+
+<!-- ===== SPIELKALENDER ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="overline">Medenrunde 2026</p>
+      <h2>Spielkalender</h2>
+      <p>Nächste Heimspiele und Auswärtsbegegnungen unserer Mannschaften.</p>
+    </div>
+
+    <div style="overflow-x: auto;" class="reveal">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Datum</th>
+            <th>Mannschaft</th>
+            <th>Begegnung</th>
+            <th>Ort</th>
+            <th>Ergebnis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>03. Mai</td>
+            <td><span class="event-badge" style="margin-left: 0;">Herren 1</span></td>
+            <td>TC RW Losheim vs. TC Saarlouis</td>
+            <td>Heim</td>
+            <td><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">5:4</span></td>
+          </tr>
+          <tr>
+            <td>03. Mai</td>
+            <td><span class="event-badge" style="margin-left: 0;">Damen 30</span></td>
+            <td>TV Bliesen vs. TC RW Losheim</td>
+            <td>Auswärts</td>
+            <td><span style="background: #fce4ec; color: #c62828; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">6:3</span></td>
+          </tr>
+          <tr>
+            <td>10. Mai</td>
+            <td><span class="event-badge" style="margin-left: 0;">Herren 50</span></td>
+            <td>TC RW Losheim vs. TuS Herrensohr</td>
+            <td>Heim</td>
+            <td><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">7:2</span></td>
+          </tr>
+          <tr>
+            <td>10. Mai</td>
+            <td><span class="event-badge" style="margin-left: 0; background: #e8f5e9; color: #2e7d32;">Kleinfeld</span></td>
+            <td>TC RW Losheim vs. TC Wadern</td>
+            <td>Heim</td>
+            <td><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">4:0</span></td>
+          </tr>
+          <tr>
+            <td>17. Mai</td>
+            <td><span class="event-badge" style="margin-left: 0;">Herren 2</span></td>
+            <td>TC Merzig vs. TC RW Losheim</td>
+            <td>Auswärts</td>
+            <td><span style="background: var(--sand); color: var(--text-muted); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">offen</span></td>
+          </tr>
+          <tr>
+            <td>17. Mai</td>
+            <td><span class="event-badge" style="margin-left: 0;">Herren 40</span></td>
+            <td>TC RW Losheim vs. TC St. Wendel</td>
+            <td>Heim</td>
+            <td><span style="background: var(--sand); color: var(--text-muted); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">offen</span></td>
+          </tr>
+          <tr>
+            <td>24. Mai</td>
+            <td><span class="event-badge" style="margin-left: 0;">Junioren U-18</span></td>
+            <td>TC Dillingen vs. TC RW Losheim</td>
+            <td>Auswärts</td>
+            <td><span style="background: var(--sand); color: var(--text-muted); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">offen</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align: center; margin-top: 32px;" class="reveal">
+      <a href="#" class="btn btn-outline-dark">Kompletten Spielplan als PDF &darr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section section-rot" style="padding: 72px 0;">
+  <div class="container" style="text-align: center;">
+    <h2 class="reveal" style="color: var(--weiss); margin-bottom: 12px;">Lust mitzuspielen?</h2>
+    <p class="reveal" style="color: rgba(255,255,255,0.85); max-width: 480px; margin: 0 auto 28px; font-size: 1.05rem;">Ob Mannschaftstennis oder Hobbypartie: Melde dich bei uns und werde Teil eines Teams.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="mitglied.html" class="btn btn-white btn-lg reveal">Mitglied werden</a>
+      <a href="kontakt.html" class="btn btn-outline btn-lg reveal">Kontakt aufnehmen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>TC Rot-Weiß Losheim e.V.</h4>
+        <p>Seit 1962 Tennis in Losheim am See. Was als kleine Interessengemeinschaft mit 20 Mitgliedern begann, ist heute ein lebendiger Verein mit über 290 Mitgliedern — fast die Hälfte davon Kinder und Jugendliche.</p>
+        <div class="social-links">
+          <a href="https://instagram.com/tennisclub_losheim" target="_blank" class="social-link" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/TcRotWeissLosheim" target="_blank" class="social-link" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Verein</h4>
+        <a href="verein.html">Über uns</a>
+        <a href="mannschaften.html">Mannschaften</a>
+        <a href="tennisschule.html">Tennisschule</a>
+        <a href="anlage.html">Anlage</a>
+        <a href="aktuelles.html">Aktuelles</a>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <a href="platzbuchung.html">Platzbuchung</a>
+        <a href="mitglied.html">Mitglied werden</a>
+        <a href="trainingszeiten.html">Trainingszeiten</a>
+        <a href="sponsoren.html">Sponsoren</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <p>
+          Weiherberg 996<br>
+          66679 Losheim am See<br><br>
+          <a href="mailto:info@tc-losheim.de" style="color: rgba(255,255,255,0.7);">info@tc-losheim.de</a><br>
+          <a href="tel:068725355" style="color: rgba(255,255,255,0.7);">06872 5355</a> (TKL)
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 TC Rot-Weiß Losheim e.V.</span>
+      <span>
+        <a href="impressum.html">Impressum</a> &middot;
+        <a href="datenschutz.html">Datenschutz</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+// Team-Tab Filter
+document.querySelectorAll('.team-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    // Update active tab
+    document.querySelectorAll('.team-tab').forEach(t => {
+      t.classList.remove('active');
+      t.classList.remove('btn-primary');
+      t.classList.add('btn-outline-dark');
+    });
+    this.classList.add('active');
+    this.classList.remove('btn-outline-dark');
+    this.classList.add('btn-primary');
+
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.team-card').forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

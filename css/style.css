@@ -1,0 +1,170 @@
+/* ============================================
+   TC Rot-Weiß Losheim — Hauptstyles
+   ============================================ */
+
+/* --- Google Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --rot: #b71c1c;
+  --rot-dark: #7f0000;
+  --rot-light: #f3dede;
+  --rot-glow: rgba(183, 28, 28, 0.15);
+
+  --sand: #f5f0eb;
+  --sand-dark: #e8ddd3;
+  --sand-light: #faf8f5;
+
+  --anthrazit: #1a1a2e;
+  --anthrazit-light: #2d2d44;
+
+  --weiss: #ffffff;
+  --text: #2d2d2d;
+  --text-light: #6b6b6b;
+  --text-muted: #999;
+
+  --schatten-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --schatten: 0 4px 16px rgba(0,0,0,0.08);
+  --schatten-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --schatten-xl: 0 16px 48px rgba(0,0,0,0.16);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --max-w: 1200px;
+  --max-w-sm: 900px;
+  --max-w-xs: 700px;
+
+  --header-h: 80px;
+  --header-h-shrink: 64px;
+
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s ease;
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--weiss);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
+h4 { font-size: 1.1rem; }
+
+p { color: var(--text-light); line-height: 1.75; }
+
+.overline {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--rot);
+}
+
+/* --- Layout --- */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container-sm { max-width: var(--max-w-sm); margin: 0 auto; padding: 0 24px; }
+.container-xs { max-width: var(--max-w-xs); margin: 0 auto; padding: 0 24px; }
+
+.section {
+  padding: 100px 0;
+}
+
+.section-sand { background: var(--sand); }
+.section-dark {
+  background: var(--anthrazit);
+  color: var(--weiss);
+}
+.section-dark h2, .section-dark h3, .section-dark h4 { color: var(--weiss); }
+.section-dark p { color: rgba(255,255,255,0.7); }
+.section-dark .overline { color: rgba(255,255,255,0.5); }
+
+.section-rot {
+  background: linear-gradient(135deg, var(--rot) 0%, var(--rot-dark) 100%);
+  color: var(--weiss);
+}
+.section-rot h2, .section-rot h3 { color: var(--weiss); }
+.section-rot p { color: rgba(255,255,255,0.85); }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-header .overline { margin-bottom: 8px; }
+.section-header h2 { margin-bottom: 12px; }
+.section-header p { max-width: 560px; margin: 0 auto; font-size: 1.05rem; }
+
+/* --- Grid Helpers --- */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* --- Scroll Animations --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger children */
+.stagger > * { transition-delay: calc(var(--i, 0) * 0.1s); }
