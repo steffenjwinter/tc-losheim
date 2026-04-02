@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Plätze{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Plätze</h1>
+
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Typ</th>
+                <th>Belag</th>
+                <th>Saison</th>
+                <th>Zeiten</th>
+                <th>Licht</th>
+                <th>Status</th>
+                <th>Aktion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in courts %}
+            <tr>
+                <td><strong>{{ c.name }}</strong></td>
+                <td>{{ 'Außen' if c.court_type == 'outdoor' else 'Halle' }}</td>
+                <td>{{ c.surface }}</td>
+                <td>{{ c.season_start }} bis {{ c.season_end }}</td>
+                <td>{{ c.open_time }} – {{ c.close_time }}</td>
+                <td>{{ 'Ja' if c.has_lighting else 'Nein' }}</td>
+                <td>
+                    {% if c.is_active %}
+                    <span class="status-badge status-confirmed">Aktiv</span>
+                    {% else %}
+                    <span class="status-badge status-cancelled">Inaktiv</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('admin.court_edit', court_id=c.id) }}" class="btn btn-secondary btn-sm">Bearbeiten</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

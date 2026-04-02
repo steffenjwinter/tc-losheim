@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ court.name }} bearbeiten{% endblock %}
+
+{% block content %}
+<div class="content-narrow">
+    <h1 class="page-title">{{ court.name }} bearbeiten</h1>
+
+    <form method="POST" class="form-card">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="{{ court.name }}" required>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div class="form-group">
+                <label for="open_time">Öffnung</label>
+                <input type="time" id="open_time" name="open_time" value="{{ court.open_time }}">
+            </div>
+            <div class="form-group">
+                <label for="close_time">Schließung</label>
+                <input type="time" id="close_time" name="close_time" value="{{ court.close_time }}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                <input type="checkbox" name="has_lighting" {% if court.has_lighting %}checked{% endif %}>
+                Flutlicht vorhanden
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                <input type="checkbox" name="is_active" {% if court.is_active %}checked{% endif %}>
+                Platz aktiv (buchbar)
+            </label>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('admin.courts_list') }}" class="btn btn-secondary">Abbrechen</a>
+            <button type="submit" class="btn btn-primary">Speichern</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

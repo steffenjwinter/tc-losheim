@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}{{ 'Mitglied bearbeiten' if member else 'Neues Mitglied' }}{% endblock %}
+
+{% block content %}
+<div class="content-narrow">
+    <h1 class="page-title">{{ 'Mitglied bearbeiten' if member else 'Neues Mitglied' }}</h1>
+
+    <form method="POST" class="form-card">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div class="form-group">
+                <label for="first_name">Vorname</label>
+                <input type="text" id="first_name" name="first_name"
+                       value="{{ member.first_name if member else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Nachname</label>
+                <input type="text" id="last_name" name="last_name"
+                       value="{{ member.last_name if member else '' }}" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email"
+                   value="{{ member.email if member else '' }}" required>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div class="form-group">
+                <label for="role">Rolle</label>
+                <select id="role" name="role">
+                    {% for r in ['mitglied', 'trainer', 'sportwart', 'admin', 'gast'] %}
+                    <option value="{{ r }}" {% if member and member.role == r %}selected{% endif %}>
+                        {{ r|capitalize }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="member_number">Mitgliedsnr.</label>
+                <input type="text" id="member_number" name="member_number"
+                       value="{{ member.member_number if member and member.member_number else '' }}"
+                       placeholder="z.B. M-100">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone"
+                   value="{{ member.phone if member and member.phone else '' }}"
+                   placeholder="+49 ...">
+        </div>
+
+        <div class="form-group">
+            <label for="password">{{ 'Neues Passwort (leer lassen = unverändert)' if member else 'Passwort' }}</label>
+            <input type="password" id="password" name="password"
+                   placeholder="{{ 'Neues Passwort' if member else 'Initiales Passwort' }}"
+                   {% if not member %}value="tennis2026"{% endif %}>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('admin.members_list') }}" class="btn btn-secondary">Abbrechen</a>
+            <button type="submit" class="btn btn-primary">{{ 'Speichern' if member else 'Anlegen' }}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Buchungen{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Buchungen</h1>
+
+<div class="toolbar">
+    <form method="GET" style="display:flex; gap:8px; flex-wrap:wrap;">
+        <input type="date" name="date" value="{{ date_filter }}" class="toolbar-search" style="min-width:160px;">
+        <select name="court" class="toolbar-search" style="min-width:140px;">
+            <option value="">Alle Plätze</option>
+            {% for c in courts %}
+            <option value="{{ c.id }}" {% if court_filter == c.id|string %}selected{% endif %}>{{ c.name }}</option>
+            {% endfor %}
+        </select>
+        <select name="status" class="toolbar-search" style="min-width:140px;">
+            <option value="confirmed" {% if status_filter == 'confirmed' %}selected{% endif %}>Bestätigt</option>
+            <option value="cancelled" {% if status_filter == 'cancelled' %}selected{% endif %}>Storniert</option>
+            <option value="all" {% if status_filter == 'all' %}selected{% endif %}>Alle</option>
+        </select>
+        <button type="submit" class="btn btn-secondary btn-sm">Filtern</button>
+    </form>
+</div>
+
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Zeit</th>
+                <th>Platz</th>
+                <th>Mitglied</th>
+                <th>Preis</th>
+                <th>Status</th>
+                <th>Aktion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in bookings %}
+            <tr>
+                <td>{{ b.date|format_date_de }}</td>
+                <td>{{ b.start_time }} – {{ b.end_time }}</td>
+                <td>{{ b.court.name }}</td>
+                <td>{{ b.user.full_name }}</td>
+                <td>{{ b.price_cents|format_price }}</td>
+                <td>
+                    <span class="status-badge status-{{ b.status }}">
+                        {% if b.status == 'confirmed' %}Bestätigt{% elif b.status == 'cancelled' %}Storniert{% else %}No-Show{% endif %}
+                    </span>
+                </td>
+                <td>
+                    {% if b.status == 'confirmed' %}
+                    <form method="POST" action="{{ url_for('admin.admin_cancel_booking', booking_id=b.id) }}" style="display:inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Buchung wirklich stornieren?')">Stornieren</button>
+                    </form>
+                    {% else %}
+                    –
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if not bookings %}
+<p class="text-center text-muted mt-24">Keine Buchungen gefunden.</p>
+{% endif %}
+{% endblock %}
