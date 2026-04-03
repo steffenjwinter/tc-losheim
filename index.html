@@ -373,6 +373,123 @@
   </div>
 </footer>
 
+<!-- Navigator + Sitemap -->
+<div id="v1navigator" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 340px;
+  background: var(--weiss);
+  color: var(--text);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  overflow: hidden;
+  animation: slideInRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid rgba(0,0,0,0.08);
+">
+  <!-- Header -->
+  <div style="background: linear-gradient(135deg, #1a1a2e, #2d2d44); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="width: 8px; height: 8px; background: #4caf50; border-radius: 50;"></span>
+      <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: white;">V1 — Aktuelle Version</span>
+    </div>
+    <button onclick="document.getElementById('v1navigator').style.display='none'" style="background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer; font-size: 1rem;">&times;</button>
+  </div>
+
+  <!-- Info -->
+  <div style="padding: 14px 16px 10px;">
+    <p style="font-size: 0.78rem; color: var(--text-light); line-height: 1.5; margin-bottom: 10px;">
+      Das ist die <strong>aktuelle Hauptversion</strong>. Es gibt auch eine experimentelle V2 mit mehr CI-Elementen und Animationen.
+    </p>
+    <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+      <span style="font-size: 0.7rem; color: var(--text-muted); padding: 4px 10px; background: var(--sand); border-radius: 4px;">V1 (aktiv)</span>
+      <a href="index-v2.html" style="font-size: 0.7rem; color: white; background: var(--rot); font-weight: 600; text-decoration: none; padding: 4px 10px; border-radius: 4px;">V2 testen &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Sitemap Toggle -->
+  <div style="border-top: 1px solid var(--sand-dark);">
+    <button id="sitemapToggle" onclick="toggleSitemap()" style="width: 100%; padding: 10px 16px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit; font-size: 0.78rem; font-weight: 600; color: var(--text);">
+      <span>Alle Seiten anzeigen</span>
+      <svg id="sitemapArrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.2s;"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+
+    <div id="sitemapContent" style="display: none; padding: 0 16px 14px; max-height: 320px; overflow-y: auto;">
+      <!-- Hauptseite -->
+      <div style="margin-bottom: 12px;">
+        <div style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rot); margin-bottom: 6px;">Hauptseite</div>
+        <a href="index.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand); font-weight: 600;">Startseite</a>
+      </div>
+
+      <!-- Verein -->
+      <div style="margin-bottom: 12px;">
+        <div style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rot); margin-bottom: 6px;">Verein</div>
+        <a href="pages/verein.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Über uns / Geschichte</a>
+        <a href="pages/verein.html#vorstand" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Vorstand</a>
+        <a href="pages/anlage.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Unsere Anlage</a>
+        <a href="pages/sponsoren.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Sponsoren & Partner</a>
+      </div>
+
+      <!-- Tennis -->
+      <div style="margin-bottom: 12px;">
+        <div style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rot); margin-bottom: 6px;">Tennis</div>
+        <a href="pages/mannschaften.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Mannschaften</a>
+        <a href="pages/tennisschule.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Tennisschule</a>
+        <a href="pages/trainingszeiten.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Trainingszeiten</a>
+        <a href="pages/tagesturnier.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Tagesturnier 2026</a>
+      </div>
+
+      <!-- Aktuelles & Service -->
+      <div style="margin-bottom: 12px;">
+        <div style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rot); margin-bottom: 6px;">Aktuelles & Service</div>
+        <a href="pages/aktuelles.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Aktuelles & Termine</a>
+        <a href="pages/platzbuchung.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Platzbuchung</a>
+        <a href="pages/mitglied.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Mitglied werden</a>
+        <a href="pages/beitritt.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Online-Aufnahmeantrag</a>
+        <a href="pages/kontakt.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text); border-bottom: 1px solid var(--sand);">Kontakt & Anfahrt</a>
+      </div>
+
+      <!-- Rechtliches -->
+      <div>
+        <div style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 6px;">Rechtliches</div>
+        <a href="pages/impressum.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text-muted);">Impressum</a>
+        <a href="pages/datenschutz.html" style="display: block; padding: 6px 0; font-size: 0.8rem; color: var(--text-muted);">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes slideInRight {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  #sitemapContent a:hover {
+    color: var(--rot) !important;
+    padding-left: 6px;
+    transition: all 0.15s ease;
+  }
+</style>
+
+<script>
+function toggleSitemap() {
+  const content = document.getElementById('sitemapContent');
+  const arrow = document.getElementById('sitemapArrow');
+  const btn = document.getElementById('sitemapToggle');
+  if (content.style.display === 'none') {
+    content.style.display = 'block';
+    arrow.style.transform = 'rotate(180deg)';
+    btn.querySelector('span').textContent = 'Sitemap ausblenden';
+  } else {
+    content.style.display = 'none';
+    arrow.style.transform = '';
+    btn.querySelector('span').textContent = 'Alle Seiten anzeigen';
+  }
+}
+</script>
+
 <script src="js/main.js"></script>
 </body>
 </html>
