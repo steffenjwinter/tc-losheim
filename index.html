@@ -124,14 +124,14 @@
     </div>
 
     <div class="grid grid-3 stagger">
-      <div class="card reveal" style="--i:0">
+      <a href="pages/tagesturnier.html" class="card reveal" style="--i:0; text-decoration: none; color: inherit; display: block;">
         <div class="card-img" style="background-image: url('img/schlaeger-clay.jpg');"></div>
         <div class="card-body">
-          <div class="card-date">25. April 2026</div>
+          <div class="card-date">25. &amp; 26. April 2026</div>
           <h3>Tagesturnier Losheim</h3>
-          <p>Unser traditionelles Tagesturnier geht in die nächste Runde. Samstag und Sonntag, ab 09:30 Uhr auf der Anlage am Weiherberg. Meldet euch jetzt an!</p>
+          <p>Unser großes Tagesturnier — Damen, Herren, Senioren. Mit Kaffee, Kuchen und Grillen. Jetzt anmelden!</p>
         </div>
-      </div>
+      </a>
 
       <div class="card reveal" style="--i:1">
         <div class="card-img" style="background-image: url('img/spieler-clay.jpg');"></div>
@@ -306,14 +306,17 @@
   </div>
 </section>
 
-<!-- ===== PARTNER ===== -->
-<section class="section section-sand" style="padding: 56px 0;">
+<!-- ===== SPONSOREN ===== -->
+<section class="section section-dark" style="padding: 56px 0;">
   <div class="container">
-    <div class="partner-strip reveal">
-      <div class="partner-logo" style="background: #0a1628; padding: 12px 20px;"><img src="img/logo-light.png" alt="mitarbeiter.com" style="max-height: 36px; width: auto;"></div>
-      <div class="partner-logo">Partner 2</div>
-      <div class="partner-logo">Partner 3</div>
-      <a href="pages/kontakt.html#formular" class="partner-logo" style="border: 2px dashed var(--sand-dark); background: transparent; color: var(--rot); font-size: 0.75rem; font-weight: 600; text-decoration: none;">Sponsor werden &rarr;</a>
+    <div style="text-align: center; margin-bottom: 28px;">
+      <p class="overline" style="color: rgba(255,255,255,0.4);">Unterstützt von</p>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap;" class="reveal">
+      <a href="https://mitarbeiter.com" target="_blank" style="opacity: 0.85; transition: opacity 0.2s;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.85'">
+        <img src="img/logo-light.png" alt="mitarbeiter.com" style="max-height: 40px; width: auto;">
+      </a>
+      <a href="pages/kontakt.html#formular" style="color: rgba(255,255,255,0.3); font-size: 0.8rem; font-weight: 600; text-decoration: none; border: 1px dashed rgba(255,255,255,0.15); padding: 12px 24px; border-radius: var(--radius); transition: all 0.2s;" onmouseenter="this.style.borderColor='var(--rot)'; this.style.color='var(--rot)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.3)'">Sponsor werden &rarr;</a>
     </div>
   </div>
 </section>

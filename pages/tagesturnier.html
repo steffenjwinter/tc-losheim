@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Losheim Tagesturnier 2026 — Samstag 25. & Sonntag 26. April ab 09:30 Uhr. Damen, Herren, Senioren. Kaffee, Kuchen, Grillen. TC Rot-Weiß Losheim.">
+  <meta property="og:title" content="Losheim Tagesturnier 2026 — 25. & 26. April">
+  <meta property="og:description" content="Unser großes Tagesturnier! Damen 30, Herren 40/50 am Samstag. Damen, Herren, Herren 30 am Sonntag. Ab 09:30 Uhr.">
+  <title>Losheim Tagesturnier 2026 — TC Rot-Weiß Losheim</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    :root {
+      --gruen: #2e7d32;
+      --gruen-dark: #1b5e20;
+      --gruen-light: #e8f5e9;
+    }
+
+    /* Turnier Hero */
+    .turnier-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--weiss);
+      position: relative;
+      overflow: hidden;
+      padding: 120px 24px 60px;
+    }
+    .turnier-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('../img/spieler-clay.jpg') center/cover no-repeat;
+      z-index: 0;
+    }
+    .turnier-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26,26,46,0.9) 0%, rgba(26,26,46,0.7) 40%, rgba(46,125,50,0.8) 100%);
+      z-index: 1;
+    }
+    .turnier-hero > * { position: relative; z-index: 2; }
+
+    .turnier-date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gruen);
+      color: white;
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+
+    .turnier-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.05;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+    .turnier-hero h1 span { color: var(--rot); }
+
+    .turnier-hero .location {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+    }
+
+    /* Schedule Cards */
+    .schedule-cards {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .schedule-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      min-width: 260px;
+      text-align: left;
+    }
+    .schedule-card .day {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 4px;
+    }
+    .schedule-card .date {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .schedule-card .time {
+      font-size: 0.9rem;
+      color: var(--gruen-light);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .schedule-card .teams {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+    .schedule-card .teams strong { color: white; }
+
+    /* Info Section */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .info-card {
+      background: var(--weiss);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--schatten);
+      border-top: 4px solid var(--gruen);
+      transition: transform var(--transition);
+    }
+    .info-card:hover { transform: translateY(-4px); }
+    .info-card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .info-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .info-card p { font-size: 0.9rem; }
+
+    /* Timeline */
+    .timetable {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .timetable-item {
+      display: flex;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--sand-dark);
+      align-items: center;
+    }
+    .timetable-item:last-child { border-bottom: none; }
+    .timetable-time {
+      min-width: 80px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gruen);
+    }
+    .timetable-desc h4 { font-size: 0.95rem; margin-bottom: 2px; }
+    .timetable-desc p { font-size: 0.85rem; }
+
+    /* CTA Section */
+    .cta-turnier {
+      background: linear-gradient(135deg, var(--gruen) 0%, var(--gruen-dark) 100%);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .cta-turnier h2 { color: white; }
+    .cta-turnier p { color: rgba(255,255,255,0.85); }
+
+    .btn-gruen {
+      background: var(--weiss);
+      color: var(--gruen);
+      font-weight: 700;
+    }
+    .btn-gruen:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .countdown-item {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      min-width: 80px;
+      text-align: center;
+    }
+    .countdown-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+    }
+    .countdown-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .schedule-cards { flex-direction: column; align-items: center; }
+      .schedule-card { width: 100%; max-width: 320px; }
+      .countdown-item { min-width: 60px; padding: 12px; }
+      .countdown-num { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <img src="../img/logo.png" alt="TC Rot-Weiß Losheim" loading="eager">
+      <div class="logo-text">TC <span>Rot-Weiß</span> Losheim</div>
+    </a>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="aktuelles.html" class="active">Aktuelles</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="mitglied.html" class="btn btn-outline-dark btn-sm">Mitglied werden</a>
+    </div>
+    <button class="mobile-toggle" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav">
+  <a href="../index.html">Home</a>
+  <a href="aktuelles.html">Aktuelles</a>
+  <a href="mannschaften.html">Mannschaften</a>
+  <a href="kontakt.html">Kontakt</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="turnier-hero">
+  <div class="turnier-date-badge">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    25. &amp; 26. April 2026
+  </div>
+
+  <h1>Losheim<br><span>Tagesturnier</span></h1>
+  <p class="location">TC Rot-Weiß Losheim e.V. &middot; Tennisanlage am Weiherberg</p>
+
+  <!-- Countdown -->
+  <div class="countdown" id="countdown"></div>
+
+  <!-- Schedule Cards -->
+  <div class="schedule-cards">
+    <div class="schedule-card">
+      <div class="day">Samstag</div>
+      <div class="date">25. April</div>
+      <div class="time">Ab 09:30 Uhr</div>
+      <div class="teams">
+        <strong>Damen 30</strong><br>
+        <strong>Herren 40</strong><br>
+        <strong>Herren 50</strong>
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="day">Sonntag</div>
+      <div class="date">26. April</div>
+      <div class="time">Ab 09:30 Uhr</div>
+      <div class="teams">
+        <strong>Damen</strong><br>
+        <strong>Herren</strong><br>
+        <strong>Herren 30</strong>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://www.tennis.de" target="_blank" class="btn btn-primary btn-lg" style="font-size: 1rem;">Jetzt auf Tennis.de anmelden</a>
+</section>
+
+<!-- ===== WAS EUCH ERWARTET ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="overline" style="color: var(--gruen);">Was euch erwartet</p>
+      <h2>Mehr als nur Tennis</h2>
+      <p>Ein ganzes Wochenende Tennissport, Gemeinschaft und gute Laune am Weiherberg.</p>
+    </div>
+
+    <div class="info-grid stagger">
+      <div class="info-card reveal" style="--i:0">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; background: var(--gruen-light); border-radius: 50%; margin-bottom: 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gruen)" stroke-width="2.5" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3>Spannende Matches</h3>
+        <p>Damen, Herren und Senioren kämpfen in packenden Einzeln und Doppeln um den Turniersieg.</p>
+      </div>
+      <div class="info-card reveal" style="--i:1">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; background: var(--gruen-light); border-radius: 50%; margin-bottom: 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gruen)" stroke-width="2.5" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3>Kaffee &amp; Kuchen</h3>
+        <p>Selbstgebackener Kuchen und frischer Kaffee — direkt am Platzrand. Gemütlich zuschauen und genießen.</p>
+      </div>
+      <div class="info-card reveal" style="--i:2">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; background: var(--gruen-light); border-radius: 50%; margin-bottom: 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gruen)" stroke-width="2.5" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3>Grillen &amp; Kaltgetränke</h3>
+        <p>Würstchen vom Grill, kühle Getränke und gesellige Runden im Clubhaus. So geht Vereinsleben.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TAGESABLAUF ===== -->
+<section class="section section-sand">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="overline" style="color: var(--gruen);">Ablauf</p>
+      <h2>Zeitplan Tagesturnier</h2>
+    </div>
+
+    <div class="timetable reveal">
+      <h3 style="text-align: center; margin-bottom: 24px; color: var(--gruen);">Samstag, 25. April</h3>
+      <div class="timetable-item">
+        <div class="timetable-time">09:00</div>
+        <div class="timetable-desc">
+          <h4>Einspielen</h4>
+          <p>Plätze stehen bereit, Aufwärmen auf den Nebenplätzen</p>
+        </div>
+      </div>
+      <div class="timetable-item">
+        <div class="timetable-time">09:30</div>
+        <div class="timetable-desc">
+          <h4>Spielbeginn</h4>
+          <p>Damen 30, Herren 40, Herren 50</p>
+        </div>
+      </div>
+      <div class="timetable-item">
+        <div class="timetable-time">12:00</div>
+        <div class="timetable-desc">
+          <h4>Mittagspause</h4>
+          <p>Grillen startet, Kaltgetränke an der Bar</p>
+        </div>
+      </div>
+      <div class="timetable-item">
+        <div class="timetable-time">~17:00</div>
+        <div class="timetable-desc">
+          <h4>Finale &amp; Siegerehrung Samstag</h4>
+          <p>Die Besten des Tages werden geehrt</p>
+        </div>
+      </div>
+
+      <h3 style="text-align: center; margin: 40px 0 24px; color: var(--gruen);">Sonntag, 26. April</h3>
+      <div class="timetable-item">
+        <div class="timetable-time">09:00</div>
+        <div class="timetable-desc">
+          <h4>Einspielen</h4>
+          <p>Plätze stehen bereit</p>
+        </div>
+      </div>
+      <div class="timetable-item">
+        <div class="timetable-time">09:30</div>
+        <div class="timetable-desc">
+          <h4>Spielbeginn</h4>
+          <p>Damen, Herren, Herren 30</p>
+        </div>
+      </div>
+      <div class="timetable-item">
+        <div class="timetable-time">12:00</div>
+        <div class="timetable-desc">
+          <h4>Mittagspause</h4>
+          <p>Kaffee &amp; Kuchen, Grillen</p>
+        </div>
+      </div>
+      <div class="timetable-item">
+        <div class="timetable-time">~17:00</div>
+        <div class="timetable-desc">
+          <h4>Finale &amp; Große Siegerehrung</h4>
+          <p>Abschluss des Tagesturnier-Wochenendes</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUICK FACTS ===== -->
+<section class="section">
+  <div class="container" style="max-width: 800px;">
+    <div class="section-header reveal">
+      <p class="overline" style="color: var(--gruen);">Auf einen Blick</p>
+      <h2>Die wichtigsten Infos</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;" class="reveal">
+      <div style="background: var(--sand); border-radius: var(--radius); padding: 20px;">
+        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Wann</div>
+        <div style="font-size: 1rem; font-weight: 700;">Sa 25. &amp; So 26. April 2026</div>
+        <div style="font-size: 0.85rem; color: var(--text-light);">Jeweils ab 09:30 Uhr</div>
+      </div>
+      <div style="background: var(--sand); border-radius: var(--radius); padding: 20px;">
+        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Wo</div>
+        <div style="font-size: 1rem; font-weight: 700;">Tennisanlage am Weiherberg</div>
+        <div style="font-size: 0.85rem; color: var(--text-light);">Weiherberg 996, 66679 Losheim am See</div>
+      </div>
+      <div style="background: var(--sand); border-radius: var(--radius); padding: 20px;">
+        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Kategorien Samstag</div>
+        <div style="font-size: 1rem; font-weight: 700;">Damen 30 &middot; Herren 40 &middot; Herren 50</div>
+      </div>
+      <div style="background: var(--sand); border-radius: var(--radius); padding: 20px;">
+        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Kategorien Sonntag</div>
+        <div style="font-size: 1rem; font-weight: 700;">Damen &middot; Herren &middot; Herren 30</div>
+      </div>
+      <div style="background: var(--sand); border-radius: var(--radius); padding: 20px;">
+        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Verpflegung</div>
+        <div style="font-size: 1rem; font-weight: 700;">Kaffee &amp; Kuchen, Grillen, Kaltgetränke</div>
+      </div>
+      <div style="background: var(--sand); border-radius: var(--radius); padding: 20px;">
+        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Zuschauer</div>
+        <div style="font-size: 1rem; font-weight: 700;">Eintritt frei!</div>
+        <div style="font-size: 0.85rem; color: var(--text-light);">Familien, Freunde und Fans willkommen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BILDER-SECTION ===== -->
+<section class="section section-sand" style="padding: 48px 0;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; border-radius: var(--radius-lg); overflow: hidden;" class="reveal">
+      <div style="aspect-ratio: 4/3; background: url('../img/hero-clay.png') center/cover;"></div>
+      <div style="aspect-ratio: 4/3; background: url('../img/schlaeger-clay.jpg') center/cover;"></div>
+      <div style="aspect-ratio: 4/3; background: url('../img/besen-clay.jpg') center/cover;"></div>
+    </div>
+    <p style="text-align: center; margin-top: 12px; font-size: 0.8rem; color: var(--text-muted);">Impressionen von unserer Anlage am Weiherberg</p>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-turnier">
+  <div class="container">
+    <h2 class="reveal" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-bottom: 12px;">Dabei sein ist alles</h2>
+    <p class="reveal" style="max-width: 500px; margin: 0 auto 32px; font-size: 1.05rem;">Melde dich jetzt an und sichere dir deinen Platz beim Losheimer Tagesturnier 2026.</p>
+    <div class="reveal" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://www.tennis.de" target="_blank" class="btn btn-gruen btn-lg">Auf Tennis.de anmelden</a>
+      <a href="kontakt.html#formular" class="btn btn-outline btn-lg">Fragen? Schreib uns</a>
+    </div>
+    <p class="reveal" style="margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+      Fragen zum Turnier? Schreib an <a href="mailto:info@tc-losheim.de" style="color: white; text-decoration: underline;">info@tc-losheim.de</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+      <span>&copy; 2026 TC Rot-Weiß Losheim e.V.</span>
+      <span>
+        <a href="impressum.html">Impressum</a> &middot;
+        <a href="datenschutz.html">Datenschutz</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+// Countdown to 25. April 2026 09:30
+function updateCountdown() {
+  const target = new Date('2026-04-25T09:30:00');
+  const now = new Date();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<div style="font-size: 1.2rem; font-weight: 700; color: white; background: var(--gruen); padding: 12px 32px; border-radius: 50px;">Das Turnier läuft!</div>';
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('countdown').innerHTML = `
+    <div class="countdown-item"><div class="countdown-num">${days}</div><div class="countdown-label">Tage</div></div>
+    <div class="countdown-item"><div class="countdown-num">${hours}</div><div class="countdown-label">Std</div></div>
+    <div class="countdown-item"><div class="countdown-num">${mins}</div><div class="countdown-label">Min</div></div>
+    <div class="countdown-item"><div class="countdown-num">${secs}</div><div class="countdown-label">Sek</div></div>
+  `;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
