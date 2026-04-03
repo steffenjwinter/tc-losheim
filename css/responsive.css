@@ -27,10 +27,30 @@
   /* Grid */
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
 
-  /* Hero */
-  .hero { min-height: 75vh; }
+  /* Hero — Mobile: cleaner, weniger überladen */
+  .hero { min-height: 100vh; min-height: 100svh; }
+  .hero-bg { background-position: 70% center; }
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(26,26,46,0.9) 0%, rgba(26,26,46,0.7) 50%, rgba(26,26,46,0.85) 100%) !important;
+  }
+  .hero-content h1 {
+    font-size: 2rem !important;
+    margin-bottom: 16px !important;
+  }
+  .hero-badge { font-size: 0.7rem; padding: 5px 14px; margin-bottom: 20px; }
+  .hero-subtitle { font-size: 0.95rem !important; margin-top: 12px !important; }
   .hero-ctas { flex-direction: column; align-items: center; }
   .hero-ctas .btn { width: 100%; max-width: 300px; }
+
+  /* Tennisschule Teaser — untereinander statt 2-spaltig */
+  .ts-teaser-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .ts-teaser-img {
+    height: 250px !important;
+    border-radius: var(--radius) !important;
+  }
 
   /* Stats */
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 0 16px; }
@@ -46,6 +66,45 @@
   /* Tables */
   .data-table { font-size: 0.8rem; }
   .data-table th, .data-table td { padding: 10px 12px; }
+
+  /* ALLE inline 2-spaltige Grids auf 1 Spalte */
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns: 300px"],
+  [style*="grid-template-columns: 250px"],
+  [style*="grid-template-columns: 200px"],
+  [style*="grid-template-columns: 2fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* 4-spaltige Grids auf 2 */
+  [style*="grid-template-columns: repeat(4"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Bilder-Grid (Galerie) */
+  [style*="grid-template-rows: 200px 200px"] {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  [style*="grid-template-rows: 200px 200px"] > div {
+    grid-row: auto !important;
+    min-height: 200px;
+  }
+
+  /* Bildstreifen */
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Schnuppertraining 2er auf 1er */
+  .schedule-cards { flex-direction: column !important; }
+
+  /* Navigator Widget kleiner */
+  #v1navigator, #v2disclaimer {
+    max-width: 280px !important;
+    font-size: 0.85rem;
+  }
 }
 
 /* === Small Mobile (max 480px) === */
