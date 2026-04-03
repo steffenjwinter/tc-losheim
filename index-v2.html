@@ -111,11 +111,22 @@
       color: var(--gruen) !important;
     }
 
-    /* Termine-Section: Grüner Hintergrund statt Sand */
+    /* Termine-Section: Grüner Hintergrund mit eigenem Keil OBEN */
     .section-termine {
       background: var(--gruen) !important;
       color: white !important;
-      padding-top: 140px !important;
+      padding-top: 100px !important;
+      position: relative;
+    }
+    .section-termine::before {
+      content: '';
+      position: absolute;
+      top: -47px;
+      left: 0; right: 0;
+      height: 48px;
+      background: var(--gruen);
+      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+      z-index: 3;
     }
     .section-termine .overline { color: rgba(255,255,255,0.6) !important; }
     .section-termine h2 { color: white !important; }
@@ -154,17 +165,8 @@
     /* Instagram-Overline: Grün */
     .insta-section .overline { color: var(--gruen) !important; }
 
-    /* Übergang News → Termine (weiß zu grün) */
-    .section-news-to-events::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0; right: 0;
-      height: 48px;
-      background: var(--gruen);
-      clip-path: polygon(0 100%, 100% 0, 100% 100%);
-      z-index: 3;
-    }
+    /* Übergang News → Termine: Keil sitzt OBEN auf der Termine-Section */
+    .section-news-to-events::after { display: none !important; }
 
     /* Übergang Termine → Anlage (grün zu weiß) */
     .section-termine::after {
