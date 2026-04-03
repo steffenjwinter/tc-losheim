@@ -213,6 +213,89 @@
       box-shadow: 0 4px 12px rgba(46,125,50,0.3);
     }
 
+    /* === CUSTOM CURSOR: Tennisball === */
+    body {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23c8e020' stroke='%23a0b818' stroke-width='1'/%3E%3Cpath d='M4 4c2.5 4 2.5 12 0 16' fill='none' stroke='white' stroke-width='1.5' opacity='0.6'/%3E%3Cpath d='M20 4c-2.5 4-2.5 12 0 16' fill='none' stroke='white' stroke-width='1.5' opacity='0.6'/%3E%3C/svg%3E") 12 12, auto;
+    }
+    a, button, [onclick] {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='13' fill='%23c8e020' stroke='%23a0b818' stroke-width='1'/%3E%3Cpath d='M5 5c3 5 3 13 0 18' fill='none' stroke='white' stroke-width='1.5' opacity='0.6'/%3E%3Cpath d='M23 5c-3 5-3 13 0 18' fill='none' stroke='white' stroke-width='1.5' opacity='0.6'/%3E%3C/svg%3E") 14 14, pointer;
+    }
+
+    /* === HOVER ANIMATIONS === */
+    /* Cards: 3D tilt on hover */
+    .card {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
+    }
+    .card:hover {
+      transform: translateY(-8px) rotateX(2deg) !important;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    /* Feature cards: Scale + glow */
+    .feature-card {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+    }
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02) !important;
+      box-shadow: 0 16px 32px rgba(46, 125, 50, 0.15) !important;
+    }
+
+    /* Buttons: Bounce on hover */
+    .btn {
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+    .btn:active {
+      transform: scale(0.95) !important;
+    }
+
+    /* Event items: Slide + color */
+    .event-item {
+      transition: transform 0.3s ease, background 0.3s ease !important;
+    }
+
+    /* Stats numbers: Pulse on hover */
+    .stat-number {
+      transition: transform 0.3s ease;
+    }
+    .stat-number:hover {
+      transform: scale(1.15);
+    }
+
+    /* Logo: Spin on hover (subtle) */
+    .logo img {
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+    .logo:hover img {
+      transform: rotate(15deg) scale(1.1) !important;
+    }
+
+    /* Nav links: Underline grow animation */
+    .main-nav > a::after,
+    .nav-dropdown > .nav-label::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%; right: 50%;
+      height: 2px;
+      background: var(--rot);
+      transition: left 0.2s ease, right 0.2s ease;
+    }
+    .main-nav > a:hover::after,
+    .nav-dropdown:hover > .nav-label::after {
+      left: 16px;
+      right: 16px;
+    }
+
+    /* Image gallery: Zoom on hover */
+    .gallery-grid > div {
+      transition: transform 0.5s ease;
+      overflow: hidden;
+    }
+    .gallery-grid > div:hover {
+      transform: scale(1.03);
+      z-index: 2;
+    }
+
     /* Smooth diagonal stripe accent (wie Instagram Header) */
     .diagonal-accent {
       position: absolute;
