@@ -22,12 +22,16 @@
     }
 
     /* Hero h1: Noch fetter, kondensierter */
+    .hero-content {
+      max-width: 860px !important;
+    }
     .hero-content h1 {
-      font-size: clamp(2.8rem, 6vw, 4.2rem) !important;
+      font-size: clamp(2.8rem, 5.5vw, 4rem) !important;
       font-weight: 900 !important;
       letter-spacing: -0.04em !important;
       text-transform: uppercase;
       margin-bottom: 24px !important;
+      white-space: normal;
     }
 
     /* Typewrite: schnellere Farbänderung */
@@ -41,15 +45,19 @@
       background: var(--rot) !important;
       position: relative;
       z-index: 2;
+      margin-top: -1px;
     }
-    .stats-bar::before {
+
+    /* Diagonale Übergänge: Keil als BOTTOM der Section DARÜBER */
+    .hero::after {
       content: '';
       position: absolute;
-      top: -32px;
+      bottom: 0;
       left: 0; right: 0;
-      height: 32px;
+      height: 48px;
       background: var(--rot);
       clip-path: polygon(0 100%, 100% 0, 100% 100%);
+      z-index: 3;
     }
 
     /* News Cards: Grüne Date-Badges wie auf Insta */
@@ -103,18 +111,87 @@
       color: var(--gruen) !important;
     }
 
-    /* CTA Section Rot: Diagonaler Eingang */
-    .section-rot {
-      margin-top: 48px;
+    /* Termine-Section: Grüner Hintergrund statt Sand */
+    .section-termine {
+      background: var(--gruen) !important;
+      color: white !important;
+      padding-top: 140px !important;
     }
-    .section-rot::before {
+    .section-termine .overline { color: rgba(255,255,255,0.6) !important; }
+    .section-termine h2 { color: white !important; }
+    .section-termine p { color: rgba(255,255,255,0.8) !important; }
+    .section-termine .event-item {
+      background: rgba(255,255,255,0.12) !important;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .section-termine .event-date-box {
+      background: white !important;
+      color: var(--gruen) !important;
+    }
+    .section-termine .event-date-box .day,
+    .section-termine .event-date-box .month { color: var(--gruen) !important; }
+    .section-termine .event-info h4 { color: white !important; }
+    .section-termine .event-info p { color: rgba(255,255,255,0.7) !important; }
+    .section-termine .event-badge {
+      background: rgba(255,255,255,0.2) !important;
+      color: white !important;
+    }
+
+    /* Anlage Section: Warmer Sand-Braun Akzent */
+    .section-anlage .overline { color: var(--gruen) !important; }
+    .section-anlage .feature-icon {
+      background: var(--gruen-light) !important;
+    }
+
+    /* Bilderleiste: Grüner Rahmen */
+    .gallery-grid {
+      border: 3px solid var(--gruen);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    /* Instagram-Overline: Grün */
+    .insta-section .overline { color: var(--gruen) !important; }
+
+    /* Übergang News → Termine (weiß zu grün) */
+    .section-news-to-events::after {
       content: '';
       position: absolute;
-      top: -40px;
+      bottom: 0;
       left: 0; right: 0;
-      height: 40px;
+      height: 48px;
+      background: var(--gruen);
+      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+      z-index: 3;
+    }
+
+    /* Übergang Termine → Anlage (grün zu weiß) */
+    .section-termine::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      height: 48px;
+      background: var(--weiss);
+      clip-path: polygon(0 0, 0 100%, 100% 100%);
+      z-index: 3;
+    }
+
+    /* Übergang vor CTA-Rot Section */
+    .section-rot {
+      margin-top: 0;
+      position: relative;
+    }
+    .section-before-cta::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      height: 48px;
       background: var(--rot);
       clip-path: polygon(0 100%, 100% 0, 100% 100%);
+      z-index: 3;
     }
 
     /* Sponsoren Section: Subtiler roter Strich oben */
@@ -299,7 +376,7 @@
 </section>
 
 <!-- ===== TERMINE ===== -->
-<section class="section section-sand">
+<section class="section section-termine">
   <div class="container">
     <div class="section-header reveal">
       <p class="overline">Termine</p>
@@ -347,7 +424,7 @@
 </section>
 
 <!-- ===== ANLAGE TEASER ===== -->
-<section class="section">
+<section class="section section-anlage">
   <div class="container">
     <div class="section-header reveal">
       <p class="overline">Unsere Anlage</p>
@@ -375,7 +452,7 @@
     </div>
 
     <!-- Bilder-Grid -->
-    <div style="margin-top: 48px; display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 200px 200px; gap: 8px; border-radius: var(--radius-lg); overflow: hidden;" class="reveal">
+    <div style="margin-top: 48px; display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 200px 200px; gap: 8px;" class="reveal gallery-grid">
       <div style="grid-row: span 2; background: url('img/hero-clay.png') center/cover;"></div>
       <div style="background: url('img/besen-clay.jpg') center/cover;"></div>
       <div style="background: url('img/schlaeger-clay.jpg') center/cover;"></div>
@@ -384,7 +461,7 @@
 </section>
 
 <!-- ===== TENNISSCHULE TEASER ===== -->
-<section class="section section-sand">
+<section class="section section-sand section-before-cta">
   <div class="container">
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
       <div class="reveal-left">
