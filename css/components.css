@@ -299,14 +299,37 @@
   max-width: 720px;
   padding: 0 24px;
 }
-.hero-content h1 { color: var(--weiss); margin-bottom: 8px; }
+.hero-content h1 { color: var(--weiss); margin-bottom: 20px; line-height: 1.15; }
 .hero-content h1 em {
   font-style: normal;
   color: var(--weiss);
   position: relative;
   text-shadow: 0 0 40px rgba(255,255,255,0.3);
-  border-bottom: 3px solid var(--rot);
-  padding-bottom: 4px;
+  text-decoration: underline;
+  text-decoration-color: var(--rot);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 2px;
+}
+
+/* Typewrite Animation */
+.typewrite {
+  color: rgba(255,255,255,0.3);
+  transition: color 0.5s ease;
+}
+.typewrite.typing {
+  color: rgba(255,255,255,0.3);
+}
+.typewrite.typed {
+  color: var(--rot);
+  text-shadow: 0 0 30px rgba(183, 28, 28, 0.4);
+}
+.typewrite .char {
+  opacity: 0;
+  display: inline-block;
+  transition: opacity 0.05s ease;
+}
+.typewrite .char.visible {
+  opacity: 1;
 }
 .hero-badge {
   display: inline-block;

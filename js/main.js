@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initModals();
   initInterestTags();
+  initTypewrite();
 });
 
 /* === Sticky Header Shrink === */
@@ -151,6 +152,53 @@ function initInterestTags() {
   document.querySelectorAll('.interest-tag').forEach(tag => {
     tag.addEventListener('click', () => tag.classList.toggle('active'));
   });
+}
+
+/* === Typewrite Animation === */
+function initTypewrite() {
+  const el = document.getElementById('heroTypewrite');
+  if (!el) return;
+
+  const text = el.textContent.trim();
+  el.innerHTML = '';
+  el.classList.add('typing');
+
+  // Wrap each character in a span
+  for (let i = 0; i < text.length; i++) {
+    const span = document.createElement('span');
+    span.className = 'char';
+    span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+    el.appendChild(span);
+  }
+
+  const chars = el.querySelectorAll('.char');
+  const delay = 800; // wait before starting
+  const charDelay = 45; // ms per character
+  const colorDelay = 300; // ms after typing done before turning red
+
+  // Observer: start when hero is visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          chars.forEach((char, i) => {
+            setTimeout(() => {
+              char.classList.add('visible');
+            }, i * charDelay);
+          });
+
+          // After all chars typed, turn red
+          setTimeout(() => {
+            el.classList.remove('typing');
+            el.classList.add('typed');
+          }, chars.length * charDelay + colorDelay);
+        }, delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(el.closest('.hero') || el);
 }
 
 /* === Vorstand Modal Data === */
