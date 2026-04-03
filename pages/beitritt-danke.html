@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Willkommen im TC Losheim! — Aufnahmeantrag eingegangen</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    .danke-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--sand);
+      padding: var(--header-h) 24px 40px;
+    }
+    .danke-card {
+      background: var(--weiss);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--schatten-xl);
+      max-width: 600px;
+      width: 100%;
+      padding: 56px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .danke-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rot), var(--rot-dark));
+    }
+    .danke-icon {
+      width: 80px; height: 80px;
+      background: #d4edda;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .danke-check {
+      width: 40px; height: 40px;
+      stroke: #155724;
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .danke-check path {
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: drawCheck 0.5s ease 0.8s forwards;
+    }
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+    .danke-card h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      animation: fadeUp 0.5s ease 0.5s both;
+    }
+    .danke-card .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 32px;
+      animation: fadeUp 0.5s ease 0.6s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .next-steps {
+      text-align: left;
+      margin-bottom: 32px;
+      animation: fadeUp 0.5s ease 0.7s both;
+    }
+    .next-step {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--sand);
+    }
+    .next-step:last-child { border-bottom: none; }
+    .step-num {
+      width: 32px; height: 32px;
+      background: var(--sand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--rot);
+      flex-shrink: 0;
+    }
+    .step-text h4 { font-size: 0.95rem; margin-bottom: 2px; }
+    .step-text p { font-size: 0.85rem; color: var(--text-muted); }
+    .danke-actions {
+      animation: fadeUp 0.5s ease 0.9s both;
+    }
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 100;
+      overflow: hidden;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      animation: confettiFall 3s ease-in forwards;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <img src="../img/logo.png" alt="TC Rot-Weiß Losheim" loading="eager">
+      <div class="logo-text">TC <span>Rot-Weiß</span> Losheim</div>
+    </a>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="verein.html">Verein</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="../index.html" class="btn btn-primary btn-sm">Zur Startseite</a>
+    </div>
+    <button class="mobile-toggle" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Confetti -->
+<div class="confetti" id="confetti"></div>
+
+<!-- ===== DANKE ===== -->
+<div class="danke-hero">
+  <div class="danke-card">
+    <div class="danke-icon">
+      <svg class="danke-check" viewBox="0 0 24 24">
+        <path d="M5 13l4 4L19 7"/>
+      </svg>
+    </div>
+
+    <h1>Du bist dabei!</h1>
+    <p class="subtitle">Dein Aufnahmeantrag ist bei uns eingegangen. Herzlich willkommen im TC Rot-Weiß Losheim.</p>
+
+    <div class="next-steps">
+      <div class="next-step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h4>Antrag wird geprüft</h4>
+          <p>Unser Vorstand schaut sich deinen Antrag an — das dauert in der Regel nur wenige Tage.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h4>Bestätigung per E-Mail</h4>
+          <p>Du bekommst eine Bestätigung mit allen Infos zu deiner Mitgliedschaft.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h4>Schläger einpacken und loslegen</h4>
+          <p>Platz buchen, Training besuchen, Mannschaft finden — wir sehen uns auf der Anlage!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="danke-actions">
+      <a href="../index.html" class="btn btn-primary" style="margin-bottom: 12px; width: 100%;">Zurück zur Startseite</a>
+      <a href="trainingszeiten.html" class="btn btn-outline-dark" style="width: 100%;">Trainingszeiten ansehen</a>
+    </div>
+
+    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 24px;">
+      Fragen? Schreib uns an <a href="mailto:info@tc-losheim.de" style="color: var(--rot);">info@tc-losheim.de</a>
+    </p>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+// Confetti Effect
+function createConfetti() {
+  const container = document.getElementById('confetti');
+  const colors = ['#b71c1c', '#ffffff', '#f5f0eb', '#e8ddd3', '#7f0000', '#d4edda'];
+
+  for (let i = 0; i < 50; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * 2 + 's';
+    piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+    piece.style.width = (6 + Math.random() * 8) + 'px';
+    piece.style.height = (6 + Math.random() * 8) + 'px';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    container.appendChild(piece);
+  }
+
+  setTimeout(() => container.remove(), 5000);
+}
+createConfetti();
+</script>
+</body>
+</html>
