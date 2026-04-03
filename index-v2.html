@@ -297,6 +297,35 @@
       z-index: 2;
     }
 
+    /* === V2 MOBILE === */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 1.6rem !important;
+        letter-spacing: -0.03em !important;
+        margin-bottom: 12px !important;
+      }
+      .hero-badge { display: none !important; }
+      .hero-subtitle { display: none !important; }
+      .hero { padding-bottom: 80px !important; }
+      .hero-ctas { margin-top: 20px; }
+
+      /* Diagonale Keile kleiner auf Mobile */
+      .hero::after,
+      .section-termine::before,
+      .section-termine::after { height: 28px !important; }
+      .hero::after { bottom: 0; }
+      .section-termine::before { top: -27px !important; }
+
+      /* Termine Section weniger Padding */
+      .section-termine { padding-top: 60px !important; }
+
+      /* Tennisball Cursor aus auf Mobile */
+      body, a, button, [onclick] { cursor: auto !important; }
+
+      /* V2 Disclaimer kleiner */
+      #v2disclaimer { max-width: 260px !important; bottom: 12px !important; left: 12px !important; }
+    }
+
     /* Smooth diagonal stripe accent (wie Instagram Header) */
     .diagonal-accent {
       position: absolute;
