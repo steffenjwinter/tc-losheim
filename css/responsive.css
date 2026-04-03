@@ -105,6 +105,34 @@
     max-width: 280px !important;
     font-size: 0.85rem;
   }
+
+  /* Platzbuchung: Court-Grid horizontal scrollbar */
+  .court-grid {
+    display: grid !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    grid-template-columns: 60px repeat(8, 100px) !important;
+    min-width: 0 !important;
+    font-size: 0.7rem;
+  }
+  .court-grid .court-header { min-width: 100px; font-size: 0.65rem; padding: 10px 6px; }
+  .court-grid .time-label { min-width: 60px; font-size: 0.7rem; padding: 8px 4px; }
+  .court-grid .slot { min-width: 100px; min-height: 38px; font-size: 0.65rem; padding: 6px 4px; }
+
+  /* Court Status Overview: 2-spaltig */
+  .courts-overview {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Date Picker scrollbar */
+  .cal-date-picker {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap !important;
+  }
+  .cal-date { min-width: 60px; padding: 8px 10px; }
+  .cal-header { flex-direction: column; gap: 12px; }
 }
 
 /* === Small Mobile (max 480px) === */
