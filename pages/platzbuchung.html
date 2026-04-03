@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Platzbuchung TC Rot-Weiß Losheim — Sieh welche Plätze frei sind und buche direkt online.">
+  <title>Platzbuchung — TC Rot-Weiß Losheim</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    /* Calendar Grid */
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .cal-nav {
+      display: flex;
+      gap: 8px;
+    }
+    .cal-nav button {
+      width: 40px; height: 40px;
+      border: 2px solid var(--sand-dark);
+      background: var(--weiss);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text);
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cal-nav button:hover { border-color: var(--rot); color: var(--rot); }
+
+    .cal-date-picker {
+      display: flex;
+      gap: 4px;
+      background: var(--sand);
+      border-radius: var(--radius);
+      padding: 4px;
+    }
+    .cal-date {
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all var(--transition-fast);
+      text-align: center;
+      min-width: 70px;
+    }
+    .cal-date:hover { background: var(--weiss); color: var(--text); }
+    .cal-date.active {
+      background: var(--rot);
+      color: var(--weiss);
+      font-weight: 700;
+    }
+    .cal-date .day-name { display: block; font-size: 0.7rem; opacity: 0.7; }
+    .cal-date .day-num { display: block; font-size: 1rem; font-weight: 700; line-height: 1.2; }
+
+    /* Court Grid */
+    .court-grid {
+      display: grid;
+      grid-template-columns: 80px repeat(8, 1fr);
+      gap: 2px;
+      background: var(--sand-dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--schatten);
+    }
+    .court-header {
+      background: var(--anthrazit);
+      color: var(--weiss);
+      padding: 14px 8px;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .court-header.outdoor { border-top: 3px solid #4caf50; }
+    .court-header.indoor { border-top: 3px solid #2196f3; }
+    .court-header .court-type {
+      font-size: 0.6rem;
+      font-weight: 400;
+      opacity: 0.6;
+      display: block;
+      margin-top: 2px;
+    }
+    .time-label {
+      background: var(--weiss);
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slot {
+      background: var(--weiss);
+      padding: 8px;
+      text-align: center;
+      font-size: 0.7rem;
+      cursor: default;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+    }
+    .slot.free {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .slot.free:hover { background: #c8e6c9; transform: scale(1.02); }
+    .slot.booked {
+      background: #fce4ec;
+      color: #c62828;
+      font-weight: 500;
+    }
+    .slot.blocked {
+      background: var(--sand);
+      color: var(--text-muted);
+      font-size: 0.65rem;
+    }
+    .slot.my-booking {
+      background: #e3f2fd;
+      color: #1565c0;
+      font-weight: 600;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+    .legend-dot {
+      width: 14px; height: 14px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Login Card */
+    .login-card {
+      background: var(--weiss);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--schatten-lg);
+      padding: 40px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* Court Status Overview */
+    .courts-overview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .court-status-card {
+      background: var(--weiss);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--schatten-sm);
+      transition: transform var(--transition);
+    }
+    .court-status-card:hover { transform: translateY(-3px); }
+    .court-status-card .court-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .court-status-card .court-belag {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .court-status-indicator {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .status-free { background: #e8f5e9; color: #2e7d32; }
+    .status-booked { background: #fce4ec; color: #c62828; }
+    .status-closed { background: var(--sand); color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      .court-grid { grid-template-columns: 60px repeat(8, 1fr); font-size: 0.65rem; }
+      .courts-overview { grid-template-columns: repeat(2, 1fr); }
+      .cal-date-picker { overflow-x: auto; }
+    }
+    @media (max-width: 480px) {
+      .court-grid { overflow-x: auto; display: block; }
+      .court-grid > div { display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <img src="../img/logo.png" alt="TC Rot-Weiß Losheim" loading="eager">
+      <div class="logo-text">TC <span>Rot-Weiß</span> Losheim</div>
+    </a>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <div class="nav-dropdown">
+        <span class="nav-label">Verein <svg width="10" height="6" viewBox="0 0 10 6" style="margin-left:4px;vertical-align:middle;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>
+        <div class="nav-dropdown-menu">
+          <a href="verein.html">Über uns</a>
+          <a href="anlage.html">Unsere Anlage</a>
+          <a href="sponsoren.html">Sponsoren</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <span class="nav-label">Tennis <svg width="10" height="6" viewBox="0 0 10 6" style="margin-left:4px;vertical-align:middle;"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>
+        <div class="nav-dropdown-menu">
+          <a href="mannschaften.html">Mannschaften</a>
+          <a href="tennisschule.html">Tennisschule</a>
+          <a href="trainingszeiten.html">Trainingszeiten</a>
+        </div>
+      </div>
+      <a href="aktuelles.html">Aktuelles</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="mitglied.html" class="btn btn-outline-dark btn-sm">Mitglied werden</a>
+      <a href="platzbuchung.html" class="btn btn-primary btn-sm active">Platz buchen</a>
+    </div>
+    <button class="mobile-toggle" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav">
+  <a href="../index.html">Home</a>
+  <a href="verein.html">Verein</a>
+  <a href="mannschaften.html">Mannschaften</a>
+  <a href="tennisschule.html">Tennisschule</a>
+  <a href="aktuelles.html">Aktuelles</a>
+  <a href="kontakt.html">Kontakt</a>
+  <div class="mobile-nav-cta">
+    <a href="mitglied.html" class="btn btn-outline-dark">Mitglied werden</a>
+    <a href="platzbuchung.html" class="btn btn-primary">Platz buchen</a>
+  </div>
+</div>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero" style="padding-bottom: 40px;">
+  <div class="container">
+    <p class="overline" style="color: rgba(255,255,255,0.5); margin-bottom: 8px;">Platzbuchung</p>
+    <h1>Platz buchen</h1>
+    <p>Sieh welche Plätze frei sind und reserviere deinen Court — direkt online.</p>
+  </div>
+</section>
+
+<!-- ===== LIVE COURT STATUS ===== -->
+<section class="section" style="padding-top: 48px;">
+  <div class="container">
+
+    <!-- Quick Status: Welche Plätze sind JETZT frei? -->
+    <div class="section-header reveal" style="margin-bottom: 32px;">
+      <p class="overline">Jetzt verfügbar</p>
+      <h2>Platzbelegung live</h2>
+      <p>Stand: <span id="currentTime" style="font-weight: 600; color: var(--text);"></span> — ohne Anmeldung einsehbar.</p>
+    </div>
+
+    <div class="courts-overview reveal">
+      <div class="court-status-card">
+        <div class="court-name">Platz 1</div>
+        <div class="court-belag">Sand (Außen)</div>
+        <span class="court-status-indicator status-free">Frei</span>
+      </div>
+      <div class="court-status-card">
+        <div class="court-name">Platz 2</div>
+        <div class="court-belag">Sand (Außen)</div>
+        <span class="court-status-indicator status-booked">Belegt</span>
+      </div>
+      <div class="court-status-card">
+        <div class="court-name">Platz 3</div>
+        <div class="court-belag">Sand (Außen)</div>
+        <span class="court-status-indicator status-free">Frei</span>
+      </div>
+      <div class="court-status-card">
+        <div class="court-name">Platz 4</div>
+        <div class="court-belag">Sand (Außen)</div>
+        <span class="court-status-indicator status-free">Frei</span>
+      </div>
+      <div class="court-status-card">
+        <div class="court-name">Platz 5</div>
+        <div class="court-belag">Sand (Außen)</div>
+        <span class="court-status-indicator status-booked">Belegt</span>
+      </div>
+      <div class="court-status-card">
+        <div class="court-name">Platz 6</div>
+        <div class="court-belag">Sand (Außen)</div>
+        <span class="court-status-indicator status-free">Frei</span>
+      </div>
+      <div class="court-status-card">
+        <div class="court-name">Halle 1</div>
+        <div class="court-belag">TKL (Indoor)</div>
+        <span class="court-status-indicator status-free">Frei</span>
+      </div>
+      <div class="court-status-card">
+        <div class="court-name">Halle 2</div>
+        <div class="court-belag">TKL (Indoor)</div>
+        <span class="court-status-indicator status-booked">Belegt</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TAGESÜBERSICHT ===== -->
+<section class="section section-sand" style="padding-top: 48px;">
+  <div class="container">
+
+    <!-- Date Picker -->
+    <div class="cal-header reveal">
+      <h3 style="font-size: 1.1rem;">Tagesübersicht</h3>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div class="cal-nav">
+          <button onclick="changeDay(-1)">&larr;</button>
+          <button onclick="changeDay(1)">&rarr;</button>
+        </div>
+        <div class="cal-date-picker" id="datePicker"></div>
+      </div>
+    </div>
+
+    <!-- Court Calendar Grid -->
+    <div class="court-grid reveal" id="courtGrid">
+      <!-- Header Row -->
+      <div class="court-header" style="border-top: none;">&nbsp;</div>
+      <div class="court-header outdoor">Platz 1<span class="court-type">Sand</span></div>
+      <div class="court-header outdoor">Platz 2<span class="court-type">Sand</span></div>
+      <div class="court-header outdoor">Platz 3<span class="court-type">Sand</span></div>
+      <div class="court-header outdoor">Platz 4<span class="court-type">Sand</span></div>
+      <div class="court-header outdoor">Platz 5<span class="court-type">Sand</span></div>
+      <div class="court-header outdoor">Platz 6<span class="court-type">Sand</span></div>
+      <div class="court-header indoor">Halle 1<span class="court-type">TKL</span></div>
+      <div class="court-header indoor">Halle 2<span class="court-type">TKL</span></div>
+
+      <!-- Time Slots (generated by JS) -->
+    </div>
+
+    <!-- Legend -->
+    <div class="legend reveal">
+      <div class="legend-item"><div class="legend-dot" style="background: #e8f5e9;"></div> Frei</div>
+      <div class="legend-item"><div class="legend-dot" style="background: #fce4ec;"></div> Belegt</div>
+      <div class="legend-item"><div class="legend-dot" style="background: var(--sand);"></div> Gesperrt</div>
+      <div class="legend-item" id="legendMyBooking" style="display: none;"><div class="legend-dot" style="background: #e3f2fd;"></div> Meine Buchung</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGIN / BUCHEN ===== -->
+<section class="section">
+  <div class="container" style="max-width: 900px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+
+      <!-- Login -->
+      <div class="reveal-left">
+        <div class="login-card">
+          <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Anmelden & buchen</h3>
+          <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 24px;">Als Mitglied kannst du freie Plätze direkt reservieren.</p>
+
+          <div class="form-group">
+            <label for="loginEmail">E-Mail oder Mitgliedsnummer</label>
+            <input type="text" id="loginEmail" class="form-input" placeholder="deine@email.de">
+          </div>
+          <div class="form-group">
+            <label for="loginPass">Passwort</label>
+            <input type="password" id="loginPass" class="form-input" placeholder="••••••••">
+          </div>
+
+          <button class="btn btn-primary" style="width: 100%; margin-top: 8px;" onclick="handleLogin()">Anmelden</button>
+
+          <div style="display: flex; justify-content: space-between; margin-top: 16px;">
+            <a href="#" style="font-size: 0.8rem; color: var(--rot);">Passwort vergessen?</a>
+            <a href="#" style="font-size: 0.8rem; color: var(--text-muted);">Erstanmeldung</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="reveal-right">
+        <div style="margin-bottom: 32px;">
+          <p class="overline" style="margin-bottom: 8px;">So funktioniert's</p>
+          <h3 style="font-size: 1.2rem; margin-bottom: 20px;">In 3 Klicks zum Platz</h3>
+
+          <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+            <div style="width: 36px; height: 36px; background: var(--rot); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">1</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.95rem;">Anmelden</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Mit deiner E-Mail und Passwort einloggen</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+            <div style="width: 36px; height: 36px; background: var(--rot); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">2</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.95rem;">Platz & Zeit wählen</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Grünes Feld = frei. Anklicken und Zeitraum wählen.</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 16px; margin-bottom: 28px;">
+            <div style="width: 36px; height: 36px; background: var(--rot); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0;">3</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.95rem;">Bestätigen — fertig!</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Du bekommst eine Bestätigung per E-Mail.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--sand); border-radius: var(--radius); padding: 20px;">
+          <h4 style="font-size: 0.9rem; margin-bottom: 8px;">Noch kein Mitglied?</h4>
+          <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px;">Die Platzbuchung steht allen Mitgliedern des TC Losheim offen.</p>
+          <a href="mitglied.html" class="btn btn-outline-dark btn-sm">Jetzt Mitglied werden</a>
+        </div>
+
+        <div style="background: var(--sand); border-radius: var(--radius); padding: 20px; margin-top: 12px;">
+          <h4 style="font-size: 0.9rem; margin-bottom: 8px;">Alternativ: GotCourts App</h4>
+          <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px;">Du kannst auch über die GotCourts-App buchen.</p>
+          <a href="https://apps.gotcourts.com/de/profile/club/tc-losheim" target="_blank" class="btn btn-outline-dark btn-sm">GotCourts öffnen</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+      <span>&copy; 2026 TC Rot-Weiß Losheim e.V.</span>
+      <span>
+        <a href="impressum.html">Impressum</a> &middot;
+        <a href="datenschutz.html">Datenschutz</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+// === Current Time ===
+function updateTime() {
+  const now = new Date();
+  document.getElementById('currentTime').textContent =
+    now.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }) +
+    ', ' + now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+}
+updateTime();
+setInterval(updateTime, 60000);
+
+// === Date Picker ===
+let selectedDate = new Date();
+
+function renderDatePicker() {
+  const container = document.getElementById('datePicker');
+  container.innerHTML = '';
+  for (let i = 0; i < 7; i++) {
+    const d = new Date();
+    d.setDate(d.getDate() + i);
+    const btn = document.createElement('button');
+    btn.className = 'cal-date' + (i === Math.round((selectedDate - new Date(new Date().toDateString())) / 86400000) ? ' active' : '');
+    btn.innerHTML = `<span class="day-name">${d.toLocaleDateString('de-DE', { weekday: 'short' })}</span><span class="day-num">${d.getDate()}</span>`;
+    btn.onclick = () => { selectedDate = d; renderDatePicker(); renderGrid(); };
+    container.appendChild(btn);
+  }
+}
+
+function changeDay(delta) {
+  selectedDate.setDate(selectedDate.getDate() + delta);
+  renderDatePicker();
+  renderGrid();
+}
+
+// === Demo Data (in production: API call) ===
+function generateSlots() {
+  const slots = [];
+  const courts = 8;
+  for (let h = 8; h <= 21; h++) {
+    const row = [];
+    for (let c = 0; c < courts; c++) {
+      // Outdoor courts (0-5) closed in winter months
+      const month = selectedDate.getMonth();
+      if (c < 6 && (month < 3 || month > 9)) {
+        row.push('closed');
+      } else {
+        // Random demo data
+        const rand = Math.random();
+        if (h < 9 || h > 20) row.push('free');
+        else if (rand < 0.3) row.push('booked');
+        else row.push('free');
+      }
+    }
+    slots.push(row);
+  }
+  return slots;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('courtGrid');
+  // Keep headers (first 9 children)
+  const headers = Array.from(grid.children).slice(0, 9);
+  grid.innerHTML = '';
+  headers.forEach(h => grid.appendChild(h));
+
+  const slots = generateSlots();
+  const labels = ['free', 'Frei', 'booked', 'Belegt', 'closed', 'Geschl.'];
+
+  for (let h = 0; h < slots.length; h++) {
+    const hour = h + 8;
+    const timeDiv = document.createElement('div');
+    timeDiv.className = 'time-label';
+    timeDiv.textContent = `${hour}:00`;
+    grid.appendChild(timeDiv);
+
+    for (let c = 0; c < 8; c++) {
+      const slot = document.createElement('div');
+      const status = slots[h][c];
+      slot.className = 'slot ' + (status === 'closed' ? 'blocked' : status);
+
+      if (status === 'free') {
+        slot.textContent = 'Frei';
+        slot.onclick = () => {
+          document.getElementById('loginEmail').focus();
+          document.querySelector('.login-card').style.boxShadow = '0 0 0 3px var(--rot-glow), var(--schatten-lg)';
+          setTimeout(() => document.querySelector('.login-card').style.boxShadow = 'var(--schatten-lg)', 2000);
+        };
+      } else if (status === 'booked') {
+        slot.textContent = 'Belegt';
+      } else {
+        slot.textContent = 'Geschl.';
+      }
+      grid.appendChild(slot);
+    }
+  }
+}
+
+// === Login Handler ===
+function handleLogin() {
+  const email = document.getElementById('loginEmail').value;
+  const pass = document.getElementById('loginPass').value;
+  if (!email || !pass) {
+    alert('Bitte E-Mail und Passwort eingeben.');
+    return;
+  }
+  // In production: API call
+  alert('Das Buchungssystem wird aktuell eingerichtet. Bitte nutze in der Zwischenzeit die GotCourts-App.');
+}
+
+// Init
+renderDatePicker();
+renderGrid();
+
+// Randomize live status every 30s (demo)
+function randomizeStatus() {
+  document.querySelectorAll('.court-status-indicator').forEach(el => {
+    if (el.textContent === 'Geschl.') return;
+    const isFree = Math.random() > 0.35;
+    el.className = 'court-status-indicator ' + (isFree ? 'status-free' : 'status-booked');
+    el.textContent = isFree ? 'Frei' : 'Belegt';
+  });
+}
+</script>
+</body>
+</html>
