@@ -48,7 +48,7 @@
       margin-top: -1px;
     }
 
-    /* Diagonale Übergänge: Keil als BOTTOM der Section DARÜBER */
+    /* Hero → Stats: Keil nach RECHTS unten */
     .hero::after {
       content: '';
       position: absolute;
@@ -118,6 +118,7 @@
       padding-top: 100px !important;
       position: relative;
     }
+    /* News → Termine: Keil nach LINKS unten (invertiert) */
     .section-termine::before {
       content: '';
       position: absolute;
@@ -125,7 +126,7 @@
       left: 0; right: 0;
       height: 48px;
       background: var(--gruen);
-      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+      clip-path: polygon(0 0, 0 100%, 100% 100%);
       z-index: 3;
     }
     .section-termine .overline { color: rgba(255,255,255,0.6) !important; }
@@ -168,7 +169,7 @@
     /* Übergang News → Termine: Keil sitzt OBEN auf der Termine-Section */
     .section-news-to-events::after { display: none !important; }
 
-    /* Übergang Termine → Anlage (grün zu weiß) */
+    /* Termine → Anlage: Keil nach RECHTS unten (wieder andere Richtung) */
     .section-termine::after {
       content: '';
       position: absolute;
@@ -176,7 +177,7 @@
       left: 0; right: 0;
       height: 48px;
       background: var(--weiss);
-      clip-path: polygon(0 0, 0 100%, 100% 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
       z-index: 3;
     }
 
