@@ -178,20 +178,10 @@
       z-index: 3;
     }
 
-    /* Übergang vor CTA-Rot Section */
+    /* CTA-Rot Section: sauberer Übergang ohne Keil */
     .section-rot {
       margin-top: 0;
       position: relative;
-    }
-    .section-before-cta::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0; right: 0;
-      height: 48px;
-      background: var(--rot);
-      clip-path: polygon(0 100%, 100% 0, 100% 100%);
-      z-index: 3;
     }
 
     /* Sponsoren Section: Subtiler roter Strich oben */
@@ -461,7 +451,7 @@
 </section>
 
 <!-- ===== TENNISSCHULE TEASER ===== -->
-<section class="section section-sand section-before-cta">
+<section class="section section-sand">
   <div class="container">
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
       <div class="reveal-left">
