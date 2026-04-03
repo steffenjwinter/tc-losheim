@@ -27,20 +27,37 @@
   /* Grid */
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
 
-  /* Hero — Mobile: cleaner, weniger überladen */
+  /* Hero — Mobile: Bild füllt den ganzen Screen */
   .hero { min-height: 100vh; min-height: 100svh; }
-  .hero-bg { background-position: 70% center; }
+  .hero-bg {
+    background-position: center center;
+    background-size: cover;
+  }
   .hero-overlay {
-    background: linear-gradient(180deg, rgba(26,26,46,0.9) 0%, rgba(26,26,46,0.7) 50%, rgba(26,26,46,0.85) 100%) !important;
+    background: linear-gradient(180deg, rgba(26,26,46,0.85) 0%, rgba(26,26,46,0.5) 40%, rgba(26,26,46,0.8) 100%) !important;
+  }
+  .hero-content {
+    padding: 0 20px !important;
+    max-width: 100% !important;
   }
   .hero-content h1 {
-    font-size: 2rem !important;
-    margin-bottom: 16px !important;
+    font-size: 1.8rem !important;
+    margin-bottom: 12px !important;
+    line-height: 1.2 !important;
   }
-  .hero-badge { font-size: 0.7rem; padding: 5px 14px; margin-bottom: 20px; }
-  .hero-subtitle { font-size: 0.95rem !important; margin-top: 12px !important; }
-  .hero-ctas { flex-direction: column; align-items: center; }
-  .hero-ctas .btn { width: 100%; max-width: 300px; }
+  .hero-badge { font-size: 0.65rem; padding: 5px 12px; margin-bottom: 16px; }
+  .hero-subtitle {
+    font-size: 0.85rem !important;
+    margin-top: 10px !important;
+    line-height: 1.5 !important;
+  }
+  .hero-ctas { flex-direction: column; align-items: center; margin-top: 24px; }
+  .hero-ctas .btn { width: 100%; max-width: 280px; padding: 12px 24px; font-size: 0.85rem; }
+
+  /* Stats Bar auf Mobile kompakter */
+  .stats-bar { padding: 32px 0 !important; }
+  .stat-number { font-size: 1.5rem !important; }
+  .stat-label { font-size: 0.7rem !important; }
 
   /* Tennisschule Teaser — untereinander statt 2-spaltig */
   .ts-teaser-grid {
